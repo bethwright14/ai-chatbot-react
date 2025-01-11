@@ -1,10 +1,15 @@
-import { useState } from "react";
 import "./App.css";
+
 import { Chat } from "./components/Chat/Chat";
+import { Controls } from "./components/Controls/Controls";
+import { useState } from "react";
 
 function App() {
   const [messages, setMessages] = useState([]);
 
+  function handleContentSend(content) {
+    setMessages((prevMessages) => [...prevMessages, { content, role: "user" }]);
+  }
   return (
     <div className="App">
       <header className="Header">
@@ -14,6 +19,7 @@ function App() {
       <div className="ChatContainer">
         <Chat messages={messages} />
       </div>
+      <Controls onSend={handleContentSend} />
     </div>
   );
 }
